@@ -1,0 +1,118 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 1. Set up a full-width hero container with background image and background fade animation */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    
+    /* 4. Apply a fade-in animation to the background */
+    animation: backgroundFade 1.5s ease-in-out;
+}
+
+/* Dark overlay to make text readable */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* 2. Add a text overlay positioned off-screen */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #ffffff;
+    padding: 0 20px;
+    max-width: 800px;
+    
+    /* Initial state off-screen (moved down) and transparent */
+    opacity: 0;
+    transform: translateY(50px);
+    
+    /* 3. Define animation to slide the text into view */
+    animation: slideInUp 1s ease-out 0.5s forwards;
+    
+    /* 5. Ensure animations are smooth on mobile devices (using hardware acceleration) */
+    will-change: transform, opacity;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    color: #e0e0e0;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #6366f1;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.hero-btn:hover {
+    background-color: #4f46e5;
+    transform: translateY(-2px);
+}
+
+/* --- KEYFRAME ANIMATIONS --- */
+
+/* Keyframes for sliding text up and fading in */
+@keyframes slideInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Keyframes for background fade-in */
+@keyframes backgroundFade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments for mobile smoothness */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+}
